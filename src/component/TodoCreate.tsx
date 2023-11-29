@@ -1,6 +1,5 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTodoDispatch, useTodoNextId } from "../TodoContext";
 
 const CircleButton = styled.button`
@@ -68,9 +67,9 @@ function TodoCreate() {
   const [value, setValue] = useState("");
   const onToggle = () => {
     setValue("");
-    setOpen(!open);
+    // setOpen(!open);
   };
-  const onChange = (e) => setValue(e.target.value);
+  // const onChange = (e) => setValue(e.target.value);
 
   const dispatch = useTodoDispatch();
   const nextId = useTodoNextId();

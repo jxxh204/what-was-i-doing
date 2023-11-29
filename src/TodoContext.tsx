@@ -6,10 +6,16 @@ type Todo = {
   done: boolean;
 };
 type Action = {
-  type: "CREATE" | "TOGGLE" | "REMOVE";
+  type: "TOGGLE" | "REMOVE";
   id: number;
-  todo?: Todo;
 };
+type CreateAction = {
+  type: "CREATE";
+  id: number;
+  todo: Todo;
+};
+
+type CurrentAction = Action | CreateAction;
 
 const initialTodos = [
   {
@@ -34,7 +40,7 @@ const initialTodos = [
   },
 ];
 
-function todoReducer(state: Todo[], action: Action) {
+function todoReducer(state: Todo[], action: CurrentAction) {
   switch (action.type) {
     case "CREATE":
       return state.concat(action.todo);
@@ -45,7 +51,7 @@ function todoReducer(state: Todo[], action: Action) {
     case "REMOVE":
       return state.filter((todo) => todo.id !== action.id);
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action type: ${action}`);
   }
 }
 
